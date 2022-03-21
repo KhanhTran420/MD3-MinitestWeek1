@@ -54,7 +54,7 @@ INSERT INTO Students(studentsID, studentsFullName, address_ID, classes_ID, stude
 (9,'Le Minh Duc',1,5,17,09457825),
 (10,'Le Trung Hau',2,3,16,09435638);
 
-INSERT INTO course(courseID, courseName, courseDescription) VALUES
+INSERT INTO Course(courseID, courseName, courseDescription) VALUES
 (1,'Basic','khoa hoc co ban'),
 (2,'Hard','Khoa hoc nang cao'),
 (3,'Extend','Khoa hoc mo rong');
@@ -80,3 +80,7 @@ SELECT * FROM  Students WHERE studentsFullName like 'Nguyen%';
 SELECT * FROM  Students WHERE studentsFullName like '%Anh%';
 SELECT * FROM  Students WHERE studentsAge BETWEEN 15 and 18;
 SELECT * FROM  Students WHERE studentsID = 10;
+
+SELECT className AS 'Lớp Học' , COUNT(studentsFullName) AS 'Số Lượng' FROM Students JOIN Classes C on Students.classes_ID = C.classesID GROUP BY className;
+SELECT address AS 'Tên Địa Chỉ' , COUNT(studentsFullName) AS 'Số Lượng' FROM Students JOIN Address A on A.addressID = Students.address_ID GROUP BY address;
+SELECT courseName AS 'Tên Khóa Học' , AVG(point) AS 'Điểm Trung Bình' FROM Course JOIN Point P on Course.courseID = P.course_ID GROUP BY courseName;
